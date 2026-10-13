@@ -14,7 +14,7 @@ composer require kschroeder/spaced-tracker-api:^1.0
 
 The API requires the core library, `nikic/fast-route`, `nyholm/psr7`, and the PSR-15 handler and middleware interfaces.
 
-To work on this repository, clone it and run `composer install`. That clones `kschroeder/spaced-tracker` from GitHub, because this checkout's `composer.json` lists that repository. Replace that entry with a path repository of `../spaced-tracker` when Composer should symlink a neighboring checkout instead. The CRT console is [kschroeder/spaced-tracker-ui](https://github.com/kschroeder/spaced-tracker-ui), also on Packagist.
+To work on this repository, clone it and run `composer update`. The repository has no lock file. That command clones `kschroeder/spaced-tracker` from GitHub, because this checkout's `composer.json` lists that repository. Replace that entry with a path repository of `../spaced-tracker` when Composer should symlink a neighboring checkout instead. The CRT console is [kschroeder/spaced-tracker-ui](https://github.com/kschroeder/spaced-tracker-ui), also on Packagist.
 
 ## Run it
 
