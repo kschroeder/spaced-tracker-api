@@ -6,17 +6,15 @@ Space-Track credentials stay on the server. Session login and logout do not acce
 
 ## Install
 
-Packagist does not host these packages. Composer does not read repositories from a dependency, so an application has to register each GitHub repository itself:
+Install [kschroeder/spaced-tracker-api](https://packagist.org/packages/kschroeder/spaced-tracker-api) from Packagist. Composer installs `kschroeder/spaced-tracker` from Packagist as well:
 
 ```bash
-composer config repositories.spaced-tracker vcs https://github.com/kschroeder/spaced-tracker
-composer config repositories.spaced-tracker-api vcs https://github.com/kschroeder/spaced-tracker-api
 composer require kschroeder/spaced-tracker-api:^1.0
 ```
 
 The API requires the core library, `nikic/fast-route`, `nyholm/psr7`, and the PSR-15 handler and middleware interfaces.
 
-To work on this repository, clone it and run `composer install`. That clones `kschroeder/spaced-tracker` from GitHub. Replace that repository entry with a path repository of `../spaced-tracker` when Composer should symlink a neighboring checkout instead. The CRT console is [kschroeder/spaced-tracker-ui](https://github.com/kschroeder/spaced-tracker-ui).
+To work on this repository, clone it and run `composer install`. That clones `kschroeder/spaced-tracker` from GitHub, because this checkout's `composer.json` lists that repository. Replace that entry with a path repository of `../spaced-tracker` when Composer should symlink a neighboring checkout instead. The CRT console is [kschroeder/spaced-tracker-ui](https://github.com/kschroeder/spaced-tracker-ui), also on Packagist.
 
 ## Run it
 
