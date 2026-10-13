@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+$autoload = dirname(__DIR__) . '/vendor/autoload.php';
+if (!is_file($autoload)) {
+    fwrite(STDERR, "Composer autoload was not found. Run composer install in this package.\n");
+    exit(1);
+}
+require $autoload;
+
+$host = getenv('SPACED_TRACKER_HOST');
+$port = getenv('SPACED_TRACKER_PORT');
+$host = is_string($host) && $host !== '' ? $host : '127.0.0.1';
+$port = is_string($port) && $port !== '' ? $port : '8080';
+if (preg_match('/^[A-Za-z0-9._-]+$/', $host) !== 1) {
+    fwrite(STDERR, "SPACED_TRACKER_HOST must be a hostname or IP address.\n");
+    exit(1);
+}
+if (filter_var($port, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 65535]]) === false) {
+    fwrite(STDERR, "SPACED_TRACKER_PORT must be an integer from 1 to 65535.\n");
+    exit(1);
+}
+
+$public = dirname(__DIR__) . '/public';
+$router = $public . '/router.php';
+$command = escapeshellarg(PHP_BINARY)
+    . ' -S '
+    . escapeshellarg($host . ':' . $port)
+    . ' -t '
+    . escapeshellarg($public)
+    . ' '
+    . escapeshellarg($router);
+fwrite(STDOUT, 'Spaced Tracker API listening on http://' . $host . ':' . $port . PHP_EOL);
+passthru($command, $exitCode);
+exit($exitCode);
